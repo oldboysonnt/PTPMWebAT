@@ -8,21 +8,7 @@ for (let tag of codeTags) {
             console.log("clipboard successfully set");
             navigator.clipboard.readText().then(function (clipText) {
                 console.log(clipText);
-                // chrome.runtime.onMessage.addListener((msg, sender, response) => {
-                //     // First, validate the message's structure.
-                //     if (msg.from === 'popup2') {
-                //         // Collect the necessary data. 
-                //         // (For your specific requirements `document.querySelectorAll(...)`
-                //         //  should be equivalent to jquery's `$(...)`.)
-                //         var data = {
-                //             copiedText: clipText
-                //         };
-
-                //         // Directly respond to the sender (popup), 
-                //         // through the specified callback.
-                //         response(data);
-                //     }
-                // });
+                chrome.storage.local.set({'copiedText': clipText});
             });
         }, function () {
             console.log("clipboard write failed");
